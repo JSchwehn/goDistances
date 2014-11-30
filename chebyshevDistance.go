@@ -6,12 +6,13 @@ import(
 	"errors"
 )
 
-// ChebyshevDistance takes two float64 slices which have to have the same size.
-// It will return a float for the distance between the two slices.
+// ChebyshevDistance calculates a Chebyshev distance
 // http://en.wikipedia.org/wiki/Chebyshev_distance
 // http://reference.wolfram.com/language/ref/ChessboardDistance.html
 type ChebyshevDistance struct {}
-// p norm distance
+
+// Distance takes two float64 slices which have to have the same size.
+// It will return a float for the distance between the two slices.
 func (cd ChebyshevDistance) Distance(params ...interface{}) (float64, error) {
 	if len(params) != 2 {
 		return -1, errors.New(fmt.Sprintf("Wrong parameter count. Needed 3 got %d", len(params)))

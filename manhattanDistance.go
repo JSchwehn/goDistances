@@ -6,10 +6,11 @@ import (
 	"math"
 )
 
-// ManhattanDistance takes two float64 slices which have to have the same size.
-// It will return a float for the distance between the two slices.
+// EuclideanDistance calculates the manhattan distance
 type ManhattanDistance struct {}
 
+// Distance takes two float64 slices which have to have the same size.
+// It will return a float for the distance between the two slices.
 func (mD ManhattanDistance) Distance(params ...interface{}) (float64,error) {
 	if len(params) != 2 {
 		return -1., errors.New(fmt.Sprintf("Wrong parameter count. Needed 2 got %d", len(params)))

@@ -6,10 +6,11 @@ import (
 	"math"
 )
 
-// LpNormDistance takes one float64 slices and one float64 value.
-// It will return a float for the distance between the two values.
+// LpNormDistance norm distance
 type LpNormDistance struct{}
 
+// Distance takes one float64 slices and one float64 value.
+// It will return a float for the distance between the two values.
 func (e2d LpNormDistance) Distance(params ...interface{}) (float64, error) {
 	if len(params) != 2 {
 		return -1., errors.New(fmt.Sprintf("Wrong parameter count. Needed 2 got %d", len(params)))

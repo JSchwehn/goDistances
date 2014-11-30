@@ -5,12 +5,12 @@ import(
 	"math"
 	"errors"
 )
-
-// BrayCurtisDistance takes two float slices as vectors and returns a float as the distance between the two vectors.
+// BrayCurtisDistance calculates a Bray Curtis distance.
 // see http://people.revoledu.com/kardi/tutorial/Similarity/BrayCurtisDistance.html
 // http://www.wolframalpha.com/input/?i=Bray+Curtis+Distance
 type BrayCurtisDistance struct {}
 
+// Distance takes two float slices as vectors and returns a float as the distance between the two vectors.
 func(bcd BrayCurtisDistance) Distance(params ...interface {}) (float64,error){
 	if len(params) != 2 {
 		return -1, errors.New(fmt.Sprintf("Wrong parameter count. Needed 3 got %d", len(params)))

@@ -6,11 +6,12 @@ import(
 	"errors"
 )
 
-// CanberraDistance takes two float64 slices which have to have the same size. It will return a float for the distance between the two slices.
+// CanberraDistance calculates a canberra distance.
 // see http://en.wikipedia.org/wiki/Canberra_distance
 // see http://reference.wolfram.com/language/ref/CanberraDistance.html
 type CanberraDistance struct {}
 
+// Distance takes two float64 slices which have to have the same size. It will return a float for the distance between the two slices.
 func(cd CanberraDistance) Distance(params ...interface {}) (float64,error){
 	if len(params) != 2 {
 		return -1, errors.New(fmt.Sprintf("Wrong parameter count. Needed 3 got %d", len(params)))

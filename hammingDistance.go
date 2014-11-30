@@ -5,10 +5,12 @@ import(
 	"errors"
 )
 
-// HammingDistance takes two float64 slices which have to have the same size.
-// It will return a float for the distance between the two slices.
+
+// HammingDistance calculates the hamming distance
 type HammingDistance struct {}
 
+// Distance takes two float64 slices which have to have the same size.
+// It will return a float for the distance between the two slices.
 func(hd HammingDistance) Distance(params ...interface {}) (float64,error){
 	if len(params) != 2 {
 		return -1, errors.New(fmt.Sprintf("Wrong parameter count. Needed 3 got %d", len(params)))

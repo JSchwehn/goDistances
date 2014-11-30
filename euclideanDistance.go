@@ -6,11 +6,12 @@ import (
 	"math"
 )
 
-// EuclideanDistance takes two float64 slices which have to have the same size.
-// It will return a float for the distance between the two slices.
+// EuclideanDistance calculates an euclidean distance
 // http://en.wikipedia.org/wiki/Euclidean_distance
 type EuclideanDistance struct{}
 
+// EuclideanDistance takes two float64 slices which have to have the same size.
+// It will return a float for the distance between the two slices.
 func (e2d EuclideanDistance) Distance(params ...interface{}) (float64, error) {
 	if len(params) != 2 {
 		return 0., errors.New(fmt.Sprintf("Wrong parameter count. Needed 2 got %d", len(params)))

@@ -5,12 +5,11 @@ import(
 	"math"
 	"errors"
 )
-
-
-// MinkowskiDistance takes two float64 slices which have to have the same size and a float64 value.
-// It will return a float for the distance between the two slices.
+// MinkowskiDistance calculates the Minkowski distance
 type MinkowskiDistance struct {}
-// p norm distance
+
+// Distance takes two float64 slices which have to have the same size and a float64 value.
+// It will return a float for the distance between the two slices.
 func (md MinkowskiDistance) Distance(params ...interface{}) (float64, error) {
 	if len(params) != 3 {
 		return -1, errors.New(fmt.Sprintf("Wrong parameter count. Needed 3 got %d", len(params)))
