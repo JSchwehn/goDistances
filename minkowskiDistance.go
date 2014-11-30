@@ -6,9 +6,12 @@ import(
 	"errors"
 )
 
-type minkowskiDistance struct {}
+
+// MinkowskiDistance takes two float64 slices which have to have the same size and a float64 value.
+// It will return a float for the distance between the two slices.
+type MinkowskiDistance struct {}
 // p norm distance
-func (md minkowskiDistance) Distance(params ...interface{}) (float64, error) {
+func (md MinkowskiDistance) Distance(params ...interface{}) (float64, error) {
 	if len(params) != 3 {
 		return -1, errors.New(fmt.Sprintf("Wrong parameter count. Needed 3 got %d", len(params)))
 	}

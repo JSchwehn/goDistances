@@ -5,9 +5,11 @@ import(
 	"errors"
 )
 
-type hammingDistance struct {}
+// HammingDistance takes two float64 slices which have to have the same size.
+// It will return a float for the distance between the two slices.
+type HammingDistance struct {}
 
-func(hd hammingDistance) Distance(params ...interface {}) (float64,error){
+func(hd HammingDistance) Distance(params ...interface {}) (float64,error){
 	if len(params) != 2 {
 		return -1, errors.New(fmt.Sprintf("Wrong parameter count. Needed 3 got %d", len(params)))
 	}

@@ -6,9 +6,13 @@ import(
 	"errors"
 )
 
-type minkowskiDistanceWeighted struct {}
+// MinkowskiDistanceWeighted takes three float64 slices which have to have the same size.
+// The first two slices are the vectors and the third slice is the weight table. The forth
+// parameter is a float64 value.
+// It will return a float for the distance between the two slices.
+type MinkowskiDistanceWeighted struct {}
 // p norm distance
-func (mwd minkowskiDistanceWeighted) Distance(params ...interface{}) (float64, error) {
+func (mwd MinkowskiDistanceWeighted) Distance(params ...interface{}) (float64, error) {
 	if len(params) != 4 {
 		return -1, errors.New(fmt.Sprintf("Wrong parameter count. Needed 4 got %d", len(params)))
 	}

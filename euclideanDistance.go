@@ -6,6 +6,8 @@ import (
 	"math"
 )
 
+// EuclideanDistance takes two float64 slices which have to have the same size.
+// It will return a float for the distance between the two slices.
 // http://en.wikipedia.org/wiki/Euclidean_distance
 type EuclideanDistance struct{}
 

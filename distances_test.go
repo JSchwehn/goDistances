@@ -83,7 +83,7 @@ func TestManhattanDistance(t *testing.T) {
 
 func TestMinkowskiDistanceEclideanLike(t *testing.T) {
 	const out = 3.0
-	minkowskiDistance := new(minkowskiDistance)
+	minkowskiDistance := new(MinkowskiDistance)
 	distance, err := minkowskiDistance.Distance(v1,v2,2.0)
 	if err != nil {
 		t.Errorf("An unexpected error occured %v",err)
@@ -94,7 +94,7 @@ func TestMinkowskiDistanceEclideanLike(t *testing.T) {
 }
 func TestMinkowskiDistanceManhattanLike(t *testing.T) {
 	const out = 5.0
-	minkowskiDistance := new(minkowskiDistance)
+	minkowskiDistance := new(MinkowskiDistance)
 	distance, err := minkowskiDistance.Distance(v1,v2,1.0)
 	if err != nil {
 		t.Errorf("An unexpected error occured %v",err)
@@ -107,7 +107,7 @@ func TestMinkowskiDistanceWeighted(t *testing.T) {
 	const out = 4.24264
 	const precision = 0.00001
 	weights := []float64{2.,2.,2.}
-	minkowskiDistanceWeighted := new(minkowskiDistanceWeighted)
+	minkowskiDistanceWeighted := new(MinkowskiDistanceWeighted)
 	distance, err := minkowskiDistanceWeighted.Distance(v1,v2,weights,2.0)
 	if err != nil {
 		t.Errorf("An unexpected error occured %v",err)
@@ -119,7 +119,7 @@ func TestMinkowskiDistanceWeighted(t *testing.T) {
 func TestChebyshevDistance(t *testing.T) {
 	const out = 2.
 	const precision = 0.00001
-	chebyshevDistance := new(chebyshevDistance)
+	chebyshevDistance := new(ChebyshevDistance)
 	distance, err := chebyshevDistance.Distance(v1,v2)
 	if err != nil {
 		t.Errorf("An unexpected error occured %v",err)
@@ -131,7 +131,7 @@ func TestChebyshevDistance(t *testing.T) {
 func TestHammingDistance(t *testing.T) {
 	const out = 3.
 	const precision = 0.00001
-	hammingDistance := new(hammingDistance)
+	hammingDistance := new(HammingDistance)
 	distance, err := hammingDistance.Distance(v1,v2)
 	if err != nil {
 		t.Errorf("An unexpected error occured %v",err)
@@ -143,7 +143,7 @@ func TestHammingDistance(t *testing.T) {
 func TestBrayCurtisDistance(t *testing.T) {
 	const out       = 0.384615
 	const precision = 0.000001
-	brayCurtis := new(brayCurtisDistance)
+	brayCurtis := new(BrayCurtisDistance)
 	distance, err := brayCurtis.Distance(v1,v2)
 	if err != nil {
 		t.Errorf("An unexpected error occured %v",err)
@@ -155,7 +155,7 @@ func TestBrayCurtisDistance(t *testing.T) {
 func TestCanberraDistance(t *testing.T) {
 	const out       = 1.166667
 	const precision = 0.000001
-	canberraDistance := new(canberraDistance)
+	canberraDistance := new(CanberraDistance)
 	distance, err := canberraDistance.Distance(v1,v2)
 	if err != nil {
 		t.Errorf("An unexpected error occured %v",err)

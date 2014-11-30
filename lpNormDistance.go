@@ -6,6 +6,8 @@ import (
 	"math"
 )
 
+// LpNormDistance takes one float64 slices and one float64 value.
+// It will return a float for the distance between the two values.
 type LpNormDistance struct{}
 
 func (e2d LpNormDistance) Distance(params ...interface{}) (float64, error) {
