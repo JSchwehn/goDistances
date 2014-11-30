@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/JSchwehn/GoDistances.svg)](https://travis-ci.org/JSchwehn/GoDistances)
+[![GoDoc](https://godoc.org/github.com/JSchwehn/goDistances?status.svg)](https://godoc.org/github.com/JSchwehn/goDistances)
 
 GoDistances
 ===
