@@ -1,4 +1,4 @@
-![Testing Image](http://img.shields.io/travis/jschwehn/goDistances.svg?style=flat)
+[![Build Status](https://travis-ci.org/JSchwehn/GoDistances.svg)](https://travis-ci.org/JSchwehn/GoDistances)
 
 GoDistances
 ===
