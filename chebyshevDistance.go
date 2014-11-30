@@ -6,7 +6,7 @@ import(
 	"errors"
 )
 
-// chebyshevDistance takes two float64 slices which have to have the same size.
+// ChebyshevDistance takes two float64 slices which have to have the same size.
 // It will return a float for the distance between the two slices.
 // http://en.wikipedia.org/wiki/Chebyshev_distance
 // http://reference.wolfram.com/language/ref/ChessboardDistance.html

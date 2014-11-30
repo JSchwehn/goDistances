@@ -6,7 +6,7 @@ import(
 	"errors"
 )
 
-//canberraDistance takes two float64 slices which have to have the same size. It will return a float for the distance between the two slices.
+// CanberraDistance takes two float64 slices which have to have the same size. It will return a float for the distance between the two slices.
 // see http://en.wikipedia.org/wiki/Canberra_distance
 // see http://reference.wolfram.com/language/ref/CanberraDistance.html
 type CanberraDistance struct {}

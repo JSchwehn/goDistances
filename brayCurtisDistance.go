@@ -6,7 +6,7 @@ import(
 	"errors"
 )
 
-// brayCurtisDistance takes two float slices as vectors and returns a float as the distance between the two vectors.
+// BrayCurtisDistance takes two float slices as vectors and returns a float as the distance between the two vectors.
 // see http://people.revoledu.com/kardi/tutorial/Similarity/BrayCurtisDistance.html
 // http://www.wolframalpha.com/input/?i=Bray+Curtis+Distance
 type BrayCurtisDistance struct {}
