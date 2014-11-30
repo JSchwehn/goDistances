@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/JSchwehn/GoDistances.svg)](https://travis-ci.org/JSchwehn/GoDistances)
+[![Build Status](https://travis-ci.org/JSchwehn/goDistances.svg?branch=master)](https://travis-ci.org/JSchwehn/goDistances)
 [![GoDoc](https://godoc.org/github.com/JSchwehn/goDistances?status.svg)](https://godoc.org/github.com/JSchwehn/goDistances)
 
 GoDistances
