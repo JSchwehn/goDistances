@@ -34,6 +34,9 @@ This lib comes with this distances calculations:
   * http://en.wikipedia.org/wiki/Minkowski_distance
   * http://www.wolframalpha.com/input/?i=minkowski+measure
 
+## Documentation
+[![GoDoc](https://godoc.org/github.com/JSchwehn/goDistances?status.svg)](https://godoc.org/github.com/JSchwehn/goDistances)
+
 ## License
 [BSD License](https://github.com/jschwehn/goDistances/blob/master/LICENSE)
 ![Issues](https://www.gnu.org/graphics/lgplv3-88x31.png)
