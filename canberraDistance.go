@@ -3,7 +3,6 @@ package goDistances
 import(
 	"fmt"
 	"math"
-	"errors"
 )
 
 // CanberraDistance calculates a canberra distance.
@@ -14,7 +13,7 @@ type CanberraDistance struct {}
 // Distance takes two float64 slices which have to have the same size. It will return a float for the distance between the two slices.
 func(cd CanberraDistance) Distance(params ...interface {}) (float64,error){
 	if len(params) != 2 {
-		return -1, errors.New(fmt.Sprintf("Wrong parameter count. Needed 3 got %d", len(params)))
+		return -1,  fmt.Errorf("wrong parameter count. Needed 3 got %d", len(params))
 	}
 	v1 := params[0].([]float64)
 	v2 := params[1].([]float64)

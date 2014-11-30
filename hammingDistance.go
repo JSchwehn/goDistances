@@ -2,7 +2,6 @@ package goDistances
 
 import(
 	"fmt"
-	"errors"
 )
 
 
@@ -13,7 +12,7 @@ type HammingDistance struct {}
 // It will return a float for the distance between the two slices.
 func(hd HammingDistance) Distance(params ...interface {}) (float64,error){
 	if len(params) != 2 {
-		return -1, errors.New(fmt.Sprintf("Wrong parameter count. Needed 3 got %d", len(params)))
+		return -1,  fmt.Errorf("wrong parameter count. Needed 3 got %d", len(params))
 	}
 	v1 := params[0].([]float64)
 	v2 := params[1].([]float64)
