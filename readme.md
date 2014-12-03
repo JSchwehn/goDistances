@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/JSchwehn/goDistances.svg?branch=master)](https://travis-ci.org/JSchwehn/goDistances)
 [![GoDoc](https://godoc.org/github.com/JSchwehn/goDistances?status.svg)](https://godoc.org/github.com/JSchwehn/goDistances)
 
-GoDistances
+GoDistances [![GoDistances](https://github.com/JSchwehn/goDistances/images/goDistancesLogo.gif)](https://godoc.org/github.com/JSchwehn/goDistances)
 ===
 GoDistances is a library for calculating different kind of distance between n-dimensional vectors.
 This code has been highly influenced by Bugra Akyildiz' kmeans project https://github.com/bugra/kmeans.
@@ -34,6 +34,8 @@ This lib comes with this distances calculations:
 * Minkowski Distance and Minkowski weighed Distance
   * http://en.wikipedia.org/wiki/Minkowski_distance
   * http://www.wolframalpha.com/input/?i=minkowski+measure
+
+Logo based of original design by Renee French http://reneefrench.blogspot.de/ and modified by Julia R.
 
 ## Documentation
 [![GoDoc](https://godoc.org/github.com/JSchwehn/goDistances?status.svg)](https://godoc.org/github.com/JSchwehn/goDistances)
