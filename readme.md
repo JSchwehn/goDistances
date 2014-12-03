@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/JSchwehn/goDistances.svg?branch=master)](https://travis-ci.org/JSchwehn/goDistances)
 [![GoDoc](https://godoc.org/github.com/JSchwehn/goDistances?status.svg)](https://godoc.org/github.com/JSchwehn/goDistances)
 
-GoDistances [![GoDistances](https://raw.githubusercontent.com/JSchwehn/goDistances/master/images/goDistancesLogo.gif =64x40)](https://godoc.org/github.com/JSchwehn/goDistances)
+GoDistances [![GoDistances](https://raw.githubusercontent.com/JSchwehn/goDistances/master/images/goDistancesLogo64.gif](https://godoc.org/github.com/JSchwehn/goDistances)
 ===
 GoDistances is a library for calculating different kind of distance between n-dimensional vectors.
 This code has been highly influenced by Bugra Akyildiz' kmeans project https://github.com/bugra/kmeans.
