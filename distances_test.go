@@ -164,6 +164,42 @@ func TestCanberraDistance(t *testing.T) {
 		t.Errorf("Distance is wrong. Got %v wanted %v by a precision of %v", distance, out, precision)
 	}
 }
+// http://www.wolframalpha.com/input/?i=52%C2%B0+31%27+0%22+N+13%C2%B0+24%27+0%22+E+distance+35%C2%B0+42%27+0%22+N+139%C2%B0+46%27+0%22+E
+// http://www.frustfrei-lernen.de/mathematik/bogenmass-und-gradmass.html
+// http://de.wikipedia.org/wiki/Orthodrome#Berechnungsbeispiel_Berlin_.E2.80.93_Tokio
+// http://en.wikipedia.org/wiki/Great-circle_distance
+func TestGeoDistance(t *testing.T) {
+
+	const out = 8941
+	input1 := []float64{52.517, 13.40}
+	input2 := []float64{35.70, 139.767}
+	circumstance  := 40000.0 // circumstance of our earth
+	geoDistance   := new(GeoDistance)
+	distance, err := geoDistance.Distance(input1, input2, circumstance)
+
+	if err != nil {
+		t.Errorf("An unexpected error occured %v",err)
+	}
+	if distance != out {
+		t.Errorf("Distance is wrong. Got %v wanted %v", distance, out)
+	}
+}
+
+func TestConvertDMSToDegrees(t *testing.T) {
+	const inputLati = "52°31'1\"N"
+	const inputLong = "13° 24' 1\" E"
+	const outLati = 3.2
+	const outLong = -64.1
+	const precision = 0.000001
+	g := new(GeoDistance)
+	result := g.ConvertDMSToDegrees(inputLati, inputLong)
+	if ! isEqual(result[0], outLati, precision) {
+		t.Errorf("We got for lantitude %v but wanted %v", result[0], outLati)
+	}
+	if ! isEqual(result[1], outLong, precision) {
+		t.Errorf("We got for lantitude %v but wanted %v", result[1], outLong)
+	}
+}
 
 func isEqual(f1, f2 float64, tolerance float64) bool {
 	if math.Abs((f1-f2)) <= tolerance {
