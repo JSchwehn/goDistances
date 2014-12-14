@@ -206,13 +206,70 @@ func TestDecimalToGeo(t *testing.T) {
 		Degree:            52,
 		Minutes:           31,
 		Seconds:           1.3,
-		CardinalDirection: "",
+		CardinalDirection: "N",
 	}
 	const input = 52.517028
 	d := GeoCoordinate{}
-	d.ParseDecimal(input, 2)
+	d.ParseDecimalAsLatitude(input)
 	if d != output {
 		t.Errorf("Converted %v got %v  wanted %v", input, d, output)
+	}
+}
+func TestDecimalToGeoMinus(t *testing.T) {
+	output := GeoCoordinate{
+		Degree:            52,
+		Minutes:           31,
+		Seconds:           1.3,
+		CardinalDirection: "S",
+	}
+	const input = -52.517028
+	d := GeoCoordinate{}
+	d.ParseDecimalAsLatitude(input)
+	if d != output {
+		t.Errorf("Converted %v got %v  wanted %v", input, d, output)
+	}
+}
+func TestDecimalToGeoE(t *testing.T) {
+	output := GeoCoordinate{
+		Degree:            52,
+		Minutes:           31,
+		Seconds:           1.3,
+		CardinalDirection: "E",
+	}
+	const input = 52.517028
+	d := GeoCoordinate{}
+	d.ParseDecimalAsLongitude(input)
+	if d != output {
+		t.Errorf("Converted %v got %v  wanted %v", input, d, output)
+	}
+}
+func TestDecimalToGeoMinusW(t *testing.T) {
+	output := GeoCoordinate{
+		Degree:            52,
+		Minutes:           31,
+		Seconds:           1.3,
+		CardinalDirection: "W",
+	}
+	const input = -52.517028
+	d := GeoCoordinate{}
+	d.ParseDecimalAsLongitude(input)
+	if d != output {
+		t.Errorf("Converted %v got %v  wanted %v", input, d, output)
+	}
+}
+
+func TestToDMS(t *testing.T) {
+	input := GeoCoordinate{
+		Degree:            18,
+		Minutes:           29,
+		Seconds:           6,
+		CardinalDirection: "E",
+	}
+	output := "E 18° 29' 6.00\""
+
+
+	if result := input.ToDMS(); result != output {
+		t.Errorf("Failed to convert %v. Wanted %v got %v",input, output, result)
 	}
 }
 

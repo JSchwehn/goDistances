@@ -17,20 +17,39 @@ type GeoCoordinate struct {
 	CardinalDirection string // n(orth),(s)outh, (e)ast or (w)est
 }
 
-func (gC GeoCoordinate) ToDMS() string {
-	return fmt.Sprintf("%s %f°%f'%f\"", gC.CardinalDirection, gC.Degree, gC.Minutes, gC.Seconds)
+func (gC *GeoCoordinate) ToDMS() string {
+	return fmt.Sprintf("%s %1.0f° %1.0f' %1.2f\"", gC.CardinalDirection, gC.Degree, gC.Minutes, gC.Seconds)
 }
 func (gC GeoCoordinate) ToDecimal() float64 {
 	decimal := gC.Degree
 	decimal += gC.Minutes / 60
 	decimal += gC.Seconds / 3600
+
 	return decimal
 }
-func (gC *GeoCoordinate) ParseDecimal(d float64, round int) error {
+
+func (gC *GeoCoordinate) ParseDecimalAsLatitude(d float64) error {
+
+	if err := gC.ParseDecimal(d); err != nil {return err}
+	if d < 0 { gC.CardinalDirection = "S" } else { gC.CardinalDirection = "N" }
+
+	return nil
+}
+func (gC *GeoCoordinate) ParseDecimalAsLongitude(d float64) error {
+	if err := gC.ParseDecimal(d); err != nil {return err}
+	if d < 0 {gC.CardinalDirection = "W"} else {gC.CardinalDirection = "E"}
+
+	return nil
+}
+
+func (gC *GeoCoordinate) ParseDecimal(d float64) error {
+	round := 2
+	d = math.Abs(d)
 	gC.Degree = math.Floor(d)
-	leftover := (d - gC.Degree) * 60
+	leftover  := (d - gC.Degree) * 60
 	gC.Minutes = math.Floor(leftover)
-	gC.Seconds = gC.round((leftover-gC.Minutes)*60, 2)
+	gC.Seconds = gC.round((leftover-gC.Minutes)*60, round)
+
 	return nil
 }
 func (gC *GeoCoordinate) ParseDMS(dms string) error {
@@ -51,7 +70,7 @@ func (gC *GeoCoordinate) ParseDMS(dms string) error {
 }
 func (gC GeoCoordinate) round(val float64, places int) (newVal float64) {
 	var round float64
-	roundOn := .5
+	roundOn := .5 //
 	pow := math.Pow(10, float64(places))
 	digit := pow * val
 	_, div := math.Modf(digit)

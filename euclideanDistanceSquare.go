@@ -2,7 +2,7 @@ package goDistances
 
 // EuclideanDistanceSquare calculates an euclidean distance and square the result
 // It will return a float for the distance between the two slices.
-type EuclideanDistanceSquare struct {}
+type EuclideanDistanceSquare struct{}
 
 // Distance takes two float64 slices which have to have the same size.
 func (e2d EuclideanDistanceSquare) Distance(params ...interface{}) (float64, error) {
@@ -11,5 +11,5 @@ func (e2d EuclideanDistanceSquare) Distance(params ...interface{}) (float64, err
 	e := new(EuclideanDistance)
 	d, err := e.Distance(vector1, vector2)
 
-	return d*d, err
+	return d * d, err
 }

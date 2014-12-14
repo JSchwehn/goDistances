@@ -12,7 +12,7 @@ type LpNormDistance struct{}
 // It will return a float for the distance between the two values.
 func (e2d LpNormDistance) Distance(params ...interface{}) (float64, error) {
 	if len(params) != 2 {
-		return -1.,  fmt.Errorf("wrong parameter count. Needed 2 got %d", len(params))
+		return -1., fmt.Errorf("wrong parameter count. Needed 2 got %d", len(params))
 	}
 	vector := params[0].([]float64)
 	p := params[1].(float64)
