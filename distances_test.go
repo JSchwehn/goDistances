@@ -416,24 +416,8 @@ func TestParseDMS(t *testing.T) {
 	if d != output_pre_e {
 		t.Errorf("Convertion faild. Wanted %v got %v for %v", output_pre_e, d, input_pre_e)
 	}
-
 }
 
-func TestConvertDMSToDegrees(t *testing.T) {
-	//	const inputLati = "52°31'1\"N"
-	//	const inputLong = "13° 24' 1\" E"
-	//	const outLati = 3.2
-	//	const outLong = -64.1
-	//	const precision = 0.000001
-	//	g := new(GeoDistance)
-	//	result := g.ConvertDMSToDegrees(inputLati, inputLong)
-	//	if ! isEqual(result[0], outLati, precision) {
-	//		t.Errorf("We got for lantitude %v but wanted %v", result[0], outLati)
-	//	}
-	//	if ! isEqual(result[1], outLong, precision) {
-	//		t.Errorf("We got for lantitude %v but wanted %v", result[1], outLong)
-	//	}
-}
 
 func isEqual(f1, f2 float64, tolerance float64) bool {
 	if math.Abs((f1 - f2)) <= tolerance {
