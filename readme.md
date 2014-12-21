@@ -34,7 +34,9 @@ This lib comes with this distances calculations:
 * Minkowski Distance and Minkowski weighed Distance
   * http://en.wikipedia.org/wiki/Minkowski_distance
   * http://www.wolframalpha.com/input/?i=minkowski+measure
-
+* Vincenty Geo Distance
+  * http://en.wikipedia.org/wiki/Vincenty%27s_formulae
+  * [German] http://de.wikipedia.org/wiki/Orthodrome#Berechnungsbeispiel_Berlin_.E2.80.93_Tokio 
 Logo based of original design by Renee French http://reneefrench.blogspot.de/ and modified by Julia R.
 
 ## Documentation
