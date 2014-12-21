@@ -168,26 +168,47 @@ func TestCanberraDistance(t *testing.T) {
 	}
 }
 
+func TestDegToRad(t *testing.T) {
+	const out = 3.490658
+	const precision = 0.000001
+	p1 := GeoCoordinate{
+		Degree:  200,
+		Minutes: 0,
+		Seconds: 0,
+	}
+
+	if !isEqual(p1.ToRad(), out, precision) {
+		t.Errorf("Wrong conversion. Got %v wanted %v by a precision of %v", p1.ToRad(), out, precision)
+	}
+}
+
 // http://www.wolframalpha.com/input/?i=52%C2%B0+31%27+0%22+N+13%C2%B0+24%27+0%22+E+distance+35%C2%B0+42%27+0%22+N+139%C2%B0+46%27+0%22+E
 // http://www.frustfrei-lernen.de/mathematik/bogenmass-und-gradmass.html
 // http://de.wikipedia.org/wiki/Orthodrome#Berechnungsbeispiel_Berlin_.E2.80.93_Tokio
 // http://en.wikipedia.org/wiki/Great-circle_distance
-//func TestGeoDistance(t *testing.T) {
-//
-//	const out = 8941
-//	input1 := []float64{52.517, 13.40}
-//	input2 := []float64{35.70, 139.767}
-//	circumstance  := 40000.0 // circumstance of our earth
-//	geoDistance   := new(GeoDistance)
-//	distance, err := geoDistance.Distance(input1, input2, circumstance)
-//
-//	if err != nil {
-//		t.Errorf("An unexpected error occured %v",err)
-//	}
-//	if distance != out {
-//		t.Errorf("Distance is wrong. Got %v wanted %v", distance, out)
-//	}
-//}
+func TestDistance(t *testing.T) {
+	const out = 8941.202505
+	const radius = 6378.137
+	const earthFlatnessCorrection = 0.003352811
+	const precision = 0.000001
+
+	berlin := GeoPoint{Latitude: GeoCoordinate{}, Longitude: GeoCoordinate{}}
+	berlin.Latitude.ParseDMS("52° 31' 0\" N")
+	berlin.Longitude.ParseDMS("13° 24' 0\" E")
+
+	tokyo := GeoPoint{Latitude: GeoCoordinate{}, Longitude: GeoCoordinate{}}
+	tokyo.Latitude.ParseDMS("35° 42' 0\" N")
+	tokyo.Longitude.ParseDMS("139° 46' 0\" E")
+
+	d := new(GeoDistance)
+	distance, err := d.Distance(berlin, tokyo, radius, earthFlatnessCorrection)
+	if err != nil {
+		t.Errorf("Unxcepted error while calculation distance")
+	}
+	if !isEqual(distance, out, precision) {
+		t.Errorf("Distance is wrong. Got %v wanted %v by a precision of %v", distance, out, precision)
+	}
+}
 
 func TestGeoCoordinateToDecimal(t *testing.T) {
 	const input = "52°31'1\"N"
@@ -267,9 +288,8 @@ func TestToDMS(t *testing.T) {
 	}
 	output := "E 18° 29' 6.00\""
 
-
 	if result := input.ToDMS(); result != output {
-		t.Errorf("Failed to convert %v. Wanted %v got %v",input, output, result)
+		t.Errorf("Failed to convert %v. Wanted %v got %v", input, output, result)
 	}
 }
 

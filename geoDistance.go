@@ -16,6 +16,10 @@ type GeoCoordinate struct {
 	Seconds           float64
 	CardinalDirection string // n(orth),(s)outh, (e)ast or (w)est
 }
+type GeoPoint struct {
+	Latitude  GeoCoordinate
+	Longitude GeoCoordinate
+}
 
 func (gC *GeoCoordinate) ToDMS() string {
 	return fmt.Sprintf("%s %1.0f° %1.0f' %1.2f\"", gC.CardinalDirection, gC.Degree, gC.Minutes, gC.Seconds)
@@ -28,16 +32,33 @@ func (gC GeoCoordinate) ToDecimal() float64 {
 	return decimal
 }
 
+func (gC GeoCoordinate) ToRad() float64 {
+	deg := gC.ToDecimal()
+	return deg * (math.Pi / 180)
+}
+
 func (gC *GeoCoordinate) ParseDecimalAsLatitude(d float64) error {
 
-	if err := gC.ParseDecimal(d); err != nil {return err}
-	if d < 0 { gC.CardinalDirection = "S" } else { gC.CardinalDirection = "N" }
+	if err := gC.ParseDecimal(d); err != nil {
+		return err
+	}
+	if d < 0 {
+		gC.CardinalDirection = "S"
+	} else {
+		gC.CardinalDirection = "N"
+	}
 
 	return nil
 }
 func (gC *GeoCoordinate) ParseDecimalAsLongitude(d float64) error {
-	if err := gC.ParseDecimal(d); err != nil {return err}
-	if d < 0 {gC.CardinalDirection = "W"} else {gC.CardinalDirection = "E"}
+	if err := gC.ParseDecimal(d); err != nil {
+		return err
+	}
+	if d < 0 {
+		gC.CardinalDirection = "W"
+	} else {
+		gC.CardinalDirection = "E"
+	}
 
 	return nil
 }
@@ -46,7 +67,7 @@ func (gC *GeoCoordinate) ParseDecimal(d float64) error {
 	round := 2
 	d = math.Abs(d)
 	gC.Degree = math.Floor(d)
-	leftover  := (d - gC.Degree) * 60
+	leftover := (d - gC.Degree) * 60
 	gC.Minutes = math.Floor(leftover)
 	gC.Seconds = gC.round((leftover-gC.Minutes)*60, round)
 
@@ -83,20 +104,37 @@ func (gC GeoCoordinate) round(val float64, places int) (newVal float64) {
 	return
 }
 
-// Distance takes two float64 slices which have to have two elements each.
-// The first parameter of the slice  will be considered as north angle and the second
-// one will be considered as east angle.
-// It will return a float for the distance between the two slices.
+//http://en.wikipedia.org/wiki/Vincenty%27s_formulae
 func (mG GeoDistance) Distance(params ...interface{}) (float64, error) {
-	if len(params) != 3 {
+	if len(params) != 4 {
 		return -1., fmt.Errorf("wrong parameter count. Needed 3 got %d", len(params))
 	}
-	d1 := params[0].([]float64) // latitude *longitute
-	d2 := params[1].([]float64) //
-	c := params[2].(float64)
+	p1 := params[0].(GeoPoint) // latitude *longitute
+	p2 := params[1].(GeoPoint) // second point
+	r := params[2].(float64)   // radius
+	f := params[3].(float64)   // flattening of the ellipsoid
 
-	fmt.Printf("We got %v %v %v  \n", d1, d2, c)
-	d := 0.0
+	lat1 := p1.Latitude.ToDecimal()
+	long1 := p1.Longitude.ToDecimal()
+	lat2 := p2.Latitude.ToDecimal()
+	long2 := p2.Longitude.ToDecimal()
+
+	F := (math.Pi / 180) * ((lat1 + lat2) / 2)
+	G := (math.Pi / 180) * ((lat1 - lat2) / 2)
+	l := (math.Pi / 180) * ((long1 - long2) / 2)
+
+	S := (math.Sin(G)*math.Sin(G))*(math.Cos(l)*math.Cos(l)) +
+		(math.Cos(F)*math.Cos(F))*(math.Sin(l)*math.Sin(l))
+	C := (math.Cos(G)*math.Cos(G))*(math.Cos(l)*math.Cos(l)) +
+		(math.Sin(F)*math.Sin(F))*(math.Sin(l)*math.Sin(l))
+	w := math.Atan(math.Sqrt(S / C))
+	D := 2 * w * r
+
+	R := (math.Sqrt(S * C)) / w
+	H1 := (3*R - 1.0) / (2.0 * C)
+	H2 := (3*R + 1.0) / (2.0 * S)
+	d := D * (1.0 + f*H1*(math.Sin(F)*math.Sin(F))*(math.Cos(G)*math.Cos(G)) -
+		f*H2*(math.Cos(F)*math.Cos(F))*(math.Sin(G)*math.Sin(G)))
 
 	return d, nil
 }
