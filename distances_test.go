@@ -186,7 +186,7 @@ func TestDegToRad(t *testing.T) {
 // http://www.frustfrei-lernen.de/mathematik/bogenmass-und-gradmass.html
 // http://de.wikipedia.org/wiki/Orthodrome#Berechnungsbeispiel_Berlin_.E2.80.93_Tokio
 // http://en.wikipedia.org/wiki/Great-circle_distance
-func TestDistance(t *testing.T) {
+func TestGeoDistance(t *testing.T) {
 	const out = 8941.202505
 	const radius = 6378.137
 	const earthFlatnessCorrection = 0.003352811
