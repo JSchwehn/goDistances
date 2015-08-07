@@ -14,7 +14,7 @@ type GeoCoordinate struct {
 	Degree            float64
 	Minutes           float64
 	Seconds           float64
-	CardinalDirection string // n(orth),(s)outh, (e)ast or (w)est
+	CardinalDirection string // (n)orth,(s)outh, (e)ast or (w)est
 }
 type GeoPoint struct {
 	Latitude  GeoCoordinate
