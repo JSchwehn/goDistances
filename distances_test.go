@@ -3,7 +3,6 @@ package goDistances
 import (
 	"math"
 	"testing"
-	//	"fmt"
 )
 
 var v1 = []float64{4.0, 1.0, -2.0}
